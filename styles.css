@@ -1,0 +1,129 @@
+@import 'https://fonts.googleapis.com/css?family=Montserrat:800|Poppins:400';
+body {
+    --color-text: #fff;
+    --color-bg: #0e0e0f;
+    --color-bg-2: #242635;
+    --color-bg-3: #dc2c5a;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.background{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100% + 800px);
+    background: radial-gradient(ellipse at 500% 0,var(--color-bg) 50%,var(--color-bg-2) 80%,var(--color-bg-3) 100%);
+    /*background: url("https://www.apple.com/v/apple-events/home/x/images/overview/hero/fall-2022/hero_announce__bwxm3afyufua_large_2x.jpg") no-repeat center center fixed;*/
+    z-index: -2;
+    transform: translateY(-800px)
+}
+
+.wall {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    /*background-color: #fff;*/
+}
+.row {
+    z-index: -99;
+    display: flex;
+}
+.row:nth-child(even) {
+    justify-content: flex-end;
+}
+.row-left-1 {
+    animation: 70s linear ticker-to-left infinite;
+    opacity: .15;
+}
+.row-left-2 {
+    animation: 100s linear ticker-to-left infinite;
+    opacity: .05;
+}
+.row-left-3 {
+    animation: 150s linear ticker-to-left infinite;
+    opacity: .15;
+}
+.row-right-1 {
+    animation: 60s linear ticker-to-right infinite;
+    opacity: .1;
+}
+.row-right-2 {
+    animation: 100s linear ticker-to-right infinite;
+    opacity: .1;
+}
+.row span {
+    margin-right: 0.2em;
+    font-family: sans-serif;
+    color: transparent;
+    font-size: 20vh;
+    font-weight: bold;
+    line-height: 1;
+    text-transform: uppercase;
+    -webkit-text-stroke-width: 4px;
+    text-stroke-width: 4px;
+    -webkit-text-stroke-color: #f5f5f5;
+    text-stroke-color: #f5f5f5;
+}
+@keyframes ticker-to-left {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(-100%, 0, 0);
+    }
+}
+@keyframes ticker-to-right {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(100%, 0, 0);
+    }
+}
+/* Unrelated to demo */
+.container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+}
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: 1.2em;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    color: var(--color-text);
+    text-shadow: 0px 0px 3px rgba(0, 0, 0, 1);
+}
+.hero__tagline {
+    margin: 0 0 1rem 0;
+    opacity: .75;
+}
+.hero__title {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    letter-spacing: 3px;
+    font-size: 6rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+.hero__title span {
+    -webkit-text-stroke-width: 4px;
+    text-stroke-width: 4px;
+    -webkit-text-stroke-color: #000;
+    text-stroke-color: #000;
+}
+.hero__title span:hover {
+    -webkit-text-stroke-color: #ff007f;
+    text-stroke-color: #ff007f;
+}
+.hero__subtitle {
+    margin: 1rem 0 0 0;
+    opacity: .75;
+}
