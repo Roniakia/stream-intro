@@ -115,7 +115,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100%;
-    font-size: 1vh;
+    font-size: 2vh;
     font-family: "Poppins", sans-serif;
     font-weight: 500;
     color: var(--color-text);
