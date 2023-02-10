@@ -15,4 +15,4 @@ for (key in settings) {
 
 const date = new Date()
 
-subtitleElement.innerHTML = `${date.getDate()}.${JSON.stringify(date.getMonth()).length === 1 ? '0' + date.getMonth() : date.getMonth()}.${date.getUTCFullYear()}`
+subtitleElement.innerHTML = `${date.getDate()}.${JSON.stringify(date.getMonth() + 1).length === 1 ? '0' + (date.getMonth() + 1) : date.getMonth()}.${date.getUTCFullYear()}`
