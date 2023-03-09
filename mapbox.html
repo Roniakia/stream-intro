@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        iframe {
+            overflow: hidden;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        const settings = location.search.slice(1,location.search.length).split('&').map(i => i.split('=')).reduce((acc, cur) => Object.assign(acc, {[cur[0]]: decodeURI(cur[1])}), {})
+        const daylightStyle = settings.daylightStyle || 'mapbox/light-v10';
+        const nightStyle = settings.nightStyle || 'mapbox/dark-v10';
+        const zoom = fullscreen.zoon || 5;
+        const lang = settings.lang || 'en';
+        const timeBorder = parseInt(settings.timeBorder) || 18; // after what hour should we use the dark theme in 24h format
+
+        const body = document.querySelector('body');
+        const iframe = document.createElement('iframe');
+        iframe.setAttribute('id', 'mapBox');
+        iframe.setAttribute('frameborder', 0);
+        body.appendChild(iframe);
+
+        let previous = null;
+
+        function update() {
+            const date = new Date();
+            const hour = date.getHours();
+            const isNight = hour >= timeBorder;
+
+            if (previous !== isNight) {
+                const url = `https://overlays.rtirl.com/leaflet.html?key=${settings.key}&access_token=${settings.access_token}&fullscreen=1&style=${isNight ? nightStyle : daylightStyle}&zoom=${zoom}&lang=${lang}&attribution=0&indicatorStyle=${settings.indicatorStyle}`;
+                iframe.setAttribute('src', url);               
+            }
+            previous = isNight;
+        }
+
+        update();
+
+        setInterval(update, 300000); // update map every 5 min
+    </script>
+</body>
+</html>
