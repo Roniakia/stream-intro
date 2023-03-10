@@ -28,7 +28,8 @@
         const nightStyle = settings.nightStyle || 'mapbox/dark-v10';
         const zoom = settings.zoom || 5;
         const lang = settings.lang || 'en';
-        const timeBorder = parseInt(settings.timeBorder) || 18; // after what hour should we use the dark theme in 24h format
+        const sunrise = parseInt(settings.sunrise) || 6; // after what hour should we use the dark theme in 24h format
+        const sundawn = parseInt(settings.sundawn) || 18; // after what hour should we use the dark theme in 24h format
 
         const body = document.querySelector('body');
         const iframe = document.createElement('iframe');
@@ -41,7 +42,7 @@
         function update() {
             const date = new Date();
             const hour = date.getHours();
-            const isNight = hour >= timeBorder;
+            const isNight = hour <= sunrise || hour >= sundawn;
 
             if (previous !== isNight) {
                 const url = `https://overlays.rtirl.com/leaflet.html?key=${settings.key}&access_token=${settings.access_token}&fullscreen=1&style=${isNight ? nightStyle : daylightStyle}&zoom=${zoom}&lang=${lang}&attribution=0&indicatorStyle=${settings.indicatorStyle}`;
